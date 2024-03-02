@@ -59,6 +59,7 @@ const App = () => {
               type="range"
               className="range-input"
               min="6"
+              defaultValue={8}
               max="50"
             />
             <span>Length : {length}</span>
