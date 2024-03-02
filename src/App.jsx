@@ -18,41 +18,69 @@ const App = () => {
     }
     setPassword(pass);
   }, [length, isChar, isNumber, setPassword]);
-  const handleLength = (e) => setLength(e.target.value);
 
   useEffect(() => {
     passwordGenrator();
   }, [length, isNumber, isChar]);
+
+  const handleLength = (e) => setLength(e.target.value);
+
   const handleCopy = useCallback(() => {
     passwordRef.current?.select();
     window.navigator.clipboard.writeText(password);
   }, [password]);
   return (
     <div className="main-container">
-      <a href="">Source Code</a>
       <div className="container">
+        <a
+          href="https://github.com/isagarjaiswal/passwordgenrator"
+          target="_blank"
+          className="source-code"
+        >
+          Source Code
+        </a>
         <div className="header">
-          <input type="text" ref={passwordRef} readOnly value={password} />
-          <button onClick={handleCopy}>Copy</button>
+          <input
+            type="text"
+            ref={passwordRef}
+            readOnly
+            value={password}
+            className="password-input"
+          />
+
+          <button className="copy-button " onClick={handleCopy}>
+            Copy
+          </button>
         </div>
         <div className="footer">
-          <input onChange={handleLength} type="range" min="6" max="50" />
-          <span>Length :{length}</span>
-
-          <input
-            type="checkbox"
-            id="char"
-            value={isChar}
-            onClick={(e) => setIsChar((prev) => !prev)}
-          />
-          <label htmlFor="char">Char</label>
-          <input
-            type="checkbox"
-            id="number"
-            value={isNumber}
-            onClick={(e) => setIsNumber((prev) => !prev)}
-          />
-          <label htmlFor="number">Number</label>
+          <div>
+            <input
+              onChange={handleLength}
+              type="range"
+              className="range-input"
+              min="6"
+              max="50"
+            />
+            <span>Length : {length}</span>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="char"
+              value={isChar}
+              className="checkbox-input"
+              onClick={(e) => setIsChar((prev) => !prev)}
+            />
+            <label htmlFor="char">Char</label>
+            <input
+              type="checkbox"
+              className="checkbox-input"
+              id="number"
+              value={isNumber}
+              onClick={(e) => setIsNumber((prev) => !prev)}
+            />
+            <label htmlFor="number">Number</label>
+          </div>
         </div>
       </div>
     </div>
